@@ -15,14 +15,25 @@ export default function RootLayout() {
         <QueryClientProvider client={client}>
           <StatusBar style="dark" />
           <Stack screenOptions={{ headerShadowVisible: false }}>
-            <Stack.Screen name="index" options={{ title: "Accounts" }} />
+            <Stack.Screen
+              name="index"
+              options={{
+                title: "Accounts",
+              }}
+            />
             <Stack.Screen
               name="transfer/index"
-              options={{ title: "New Transfer" }}
+              options={{
+                title: "New Transfer",
+                headerBackButtonDisplayMode: "minimal",
+              }}
             />
             <Stack.Screen
               name="transfer/confirm"
-              options={{ title: "Transfer Complete" }}
+              options={{
+                title: "Transfer Complete",
+                headerBackButtonDisplayMode: "minimal",
+              }}
             />
           </Stack>
         </QueryClientProvider>

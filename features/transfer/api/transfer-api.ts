@@ -1,4 +1,4 @@
-import { useAccountStore } from "../store/useAccount";
+import { useAccountStore } from "../../../store/useAccount";
 
 function wait(ms: number) {
   return new Promise((res) => setTimeout(res, ms));

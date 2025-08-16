@@ -1,15 +1,13 @@
 import { memo } from "react";
 import { Pressable, Text, View } from "react-native";
 
-function Row({
-  item,
-  selected,
-  onPress,
-}: {
+interface IRecipientProps {
   item: Recipient;
   selected: boolean;
   onPress: () => void;
-}) {
+}
+
+function RecipientItem({ item, selected, onPress }: IRecipientProps) {
   return (
     <Pressable
       onPress={onPress}
@@ -26,4 +24,4 @@ function Row({
   );
 }
 
-export default memo(Row);
+export default memo(RecipientItem);
