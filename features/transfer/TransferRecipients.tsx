@@ -1,21 +1,17 @@
 import { useRouter } from "expo-router";
-import { useMemo, useState } from "react";
-import {
-  ActivityIndicator,
-  FlatList,
-  Text,
-  TextInput,
-  View,
-} from "react-native";
+import { useMemo } from "react";
+import { ActivityIndicator, FlatList, Text, View } from "react-native";
 import RecipientItem from "./components/RecipientItem";
 import { useRecipients } from "./hooks/useRecipients";
 
-export default function TransferRecipients() {
+interface IProps {
+  search: string;
+}
+
+export default function TransferRecipients({ search }: IProps) {
   const router = useRouter();
 
   const { data: recipients = [], isLoading, isError } = useRecipients();
-
-  const [search, setSearch] = useState("");
 
   const filteredRecipients = useMemo(() => {
     const q = search.trim().toLowerCase();
@@ -29,7 +25,7 @@ export default function TransferRecipients() {
 
   if (isLoading) {
     return (
-      <View className="flex-1 items-center justify-center">
+      <View className="flex-1 items-center justify-center bg-white p-4">
         <ActivityIndicator size="large" />
         <Text className="mt-2 text-gray-500">Loading recipients...</Text>
       </View>
@@ -38,25 +34,14 @@ export default function TransferRecipients() {
 
   if (isError) {
     return (
-      <View className="flex-1 items-center justify-center">
-        <Text className="text-red-500">Failed to load recipients.</Text>
+      <View className="items-center justify-center bg-white p-4">
+        <Text className="text-red-500 text-xl">Failed to load recipients.</Text>
       </View>
     );
   }
 
   return (
-    <View className="flex-1 bg-white">
-      <View className="p-4 gap-3">
-        <TextInput
-          value={search}
-          onChangeText={setSearch}
-          placeholder="Search recipient by name or account"
-          className="border border-gray-300 rounded-xl px-3 py-2"
-          autoCapitalize="none"
-          textAlign="left"
-        />
-      </View>
-
+    <View className="flex-1">
       <FlatList
         data={filteredRecipients}
         keyExtractor={(item) => item.id}

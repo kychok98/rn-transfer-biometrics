@@ -1,39 +1,16 @@
 import { Stack } from "expo-router";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { SafeAreaProvider } from "react-native-safe-area-context";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { useState } from "react";
 import { StatusBar } from "expo-status-bar";
+import Providers from "./providers";
 import "../global.css";
 
 export default function RootLayout() {
-  const [client] = useState(() => new QueryClient());
-
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
-      <SafeAreaProvider>
-        <QueryClientProvider client={client}>
-          <StatusBar style="dark" />
-          <Stack screenOptions={{ headerShadowVisible: false }}>
-            <Stack.Screen name="index" options={{ title: "Accounts" }} />
-            <Stack.Screen
-              name="transfer/recipient"
-              options={{
-                title: "Select Recipient",
-                headerBackButtonDisplayMode: "minimal",
-              }}
-            />
-            <Stack.Screen
-              name="transfer/amount"
-              options={{ title: "Enter Amount" }}
-            />
-            <Stack.Screen
-              name="transfer/confirm"
-              options={{ title: "Transfer Complete", headerBackVisible: false }}
-            />
-          </Stack>
-        </QueryClientProvider>
-      </SafeAreaProvider>
-    </GestureHandlerRootView>
+    <Providers>
+      <StatusBar style="dark" />
+      <Stack screenOptions={{ headerShadowVisible: false }}>
+        <Stack.Screen name="index" options={{ title: "Accounts" }} />
+        <Stack.Screen name="transfer" options={{ headerShown: false }} />
+      </Stack>
+    </Providers>
   );
 }

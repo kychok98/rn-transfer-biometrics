@@ -36,7 +36,7 @@ export const useTransaction = ({ requestPin }: UseTransactionParams) => {
       // update local store
       debit(res.amount);
       router.replace({
-        pathname: "/transfer/confirm",
+        pathname: "/transfer/complete",
         params: {
           id: res.id,
           name: res.recipientName,

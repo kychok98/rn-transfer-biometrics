@@ -1,9 +1,9 @@
 import { Link } from "expo-router";
-import { View, Text } from "react-native";
+import { Text, View } from "react-native";
 import { useAccountStore } from "../features/transfer/stores/useAccount";
 import { formatCurrency } from "../utils/format";
 
-export default function Home() {
+export default function AccountScreen() {
   const balance = useAccountStore((s) => s.balance);
 
   return (

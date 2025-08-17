@@ -2,7 +2,7 @@ import { Link, useLocalSearchParams } from "expo-router";
 import { Text, View } from "react-native";
 import { formatCurrency } from "../../utils/format";
 
-export default function Confirm() {
+export default function TransferCompleteScreen() {
   const params = useLocalSearchParams<{
     id: string;
     name: string;
