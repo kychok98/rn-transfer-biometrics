@@ -5,6 +5,12 @@ This is a take-home assessment demonstrating a secure transaction flows in React
 Implements **biometric authentication with PIN fallback**, mock API, and a **two-step transfer flow**:  
 **Select Recipient → Enter Amount → Confirm Transfer**.
 
+
+### 📖 Documentation
+For detailed design decisions, and challenges, see:
+
+👉 [DESIGN.md](https://github.com/kychok98/rn-transfer-biometrics/blob/develop/DESIGN.md)
+
 ---
 
 ## 🚀 Setup Instructions
@@ -49,19 +55,20 @@ Enter specific amounts to simulate errors:
 ---
 
 ### 🎥 Demo Video(s)
+Embedded GIFs (via `demo` folder) showcase:
 
-1. Success - Biometrics FaceID
+1. Success - Face ID biometric flow
 
 ![GIF1](https://github.com/kychok98/rn-transfer-biometrics/blob/develop/demo/demo_success.gif)
 
-2. Success - Fallback with Pin
+2. Success - PIN fallback
 
 ![GIF2](https://github.com/kychok98/rn-transfer-biometrics/blob/develop/demo/demo_success-pin.gif)
 
-3. Failed - Insufficient Fund Error
+3. Failure - Insufficient Funds
 
 ![GIF3](https://github.com/kychok98/rn-transfer-biometrics/blob/develop/demo/demo_fail-insufficient.gif)
 
-4. Failed - Network Error 
+4. Failure - Network Error 
 
 ![GIF4](https://github.com/kychok98/rn-transfer-biometrics/blob/develop/demo/demo_fail-network.gif)
