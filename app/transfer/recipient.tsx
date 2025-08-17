@@ -1,6 +1,7 @@
 import { Link } from "expo-router";
 import { useState } from "react";
 import { Text, TextInput, View } from "react-native";
+import { ROUTES } from "../../constants/routes";
 import TransferRecipients from "../../features/transfer/TransferRecipients";
 
 export default function TransferRecipientScreen() {
@@ -21,7 +22,7 @@ export default function TransferRecipientScreen() {
 
       <TransferRecipients search={search} />
 
-      <Link href="/" dismissTo asChild className="mb-4">
+      <Link href={ROUTES.ROOT} dismissTo asChild className="mb-4">
         <Text className="bg-black text-white text-center py-4 rounded-xl text-base mt-6">
           Back
         </Text>

@@ -1,5 +1,6 @@
 import { Link, useLocalSearchParams } from "expo-router";
 import { Text, View } from "react-native";
+import { ROUTES } from "../../constants/routes";
 import { formatCurrency } from "../../utils/format";
 
 export default function TransferCompleteScreen() {
@@ -31,7 +32,7 @@ export default function TransferCompleteScreen() {
         </>
       ) : null}
 
-      <Link href="/" dismissTo asChild>
+      <Link href={ROUTES.ROOT} dismissTo asChild>
         <Text
           className="bg-black text-white text-center py-4 rounded-xl text-base mt-6"
           accessibilityRole="button"

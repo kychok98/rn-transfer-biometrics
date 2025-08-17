@@ -1,6 +1,7 @@
 import { useRouter } from "expo-router";
 import { useMemo } from "react";
 import { ActivityIndicator, FlatList, Text, View } from "react-native";
+import { ROUTES } from "../../constants/routes";
 import RecipientItem from "./components/RecipientItem";
 import { useRecipients } from "./hooks/useRecipients";
 
@@ -50,7 +51,7 @@ export default function TransferRecipients({ search }: IProps) {
             item={item}
             onPress={() =>
               router.push({
-                pathname: "/transfer/amount",
+                pathname: ROUTES.TRANSFER.AMOUNT,
                 params: {
                   recipientAccount: item.account,
                   recipientName: item.name,

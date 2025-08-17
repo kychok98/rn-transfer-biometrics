@@ -1,6 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "expo-router";
 import { Alert } from "react-native";
+import { ROUTES } from "../../../constants/routes";
 import { processTransfer } from "../api/transfer-api";
 import { authenticateWithBiometrics } from "../../../lib/biometrics";
 import { useAccountStore } from "../stores/useAccount";
@@ -36,7 +37,7 @@ export const useTransaction = ({ requestPin }: UseTransactionParams) => {
       // update local store
       debit(res.amount);
       router.replace({
-        pathname: "/transfer/complete",
+        pathname: ROUTES.TRANSFER.COMPLETE,
         params: {
           id: res.id,
           name: res.recipientName,

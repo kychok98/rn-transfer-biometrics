@@ -1,5 +1,6 @@
 import { Link } from "expo-router";
 import { Text, View } from "react-native";
+import { ROUTES } from "../constants/routes";
 import { useAccountStore } from "../features/transfer/stores/useAccount";
 import { formatCurrency } from "../utils/format";
 
@@ -15,7 +16,7 @@ export default function AccountScreen() {
         </Text>
       </View>
 
-      <Link href="/transfer/recipient" asChild>
+      <Link href={ROUTES.TRANSFER.RECIPIENT} asChild>
         <Text
           className="bg-black text-white text-center py-4 rounded-xl text-base"
           accessibilityRole="button"
