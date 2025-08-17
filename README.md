@@ -48,5 +48,20 @@ Enter specific amounts to simulate errors:
 
 ---
 
-### 🎥 Demo Video
+### 🎥 Demo Video(s)
 
+1. Success - Biometrics FaceID
+
+![GIF1](https://github.com/kychok98/rn-transfer-biometrics/blob/develop/demo/demo_success.gif)
+
+2. Success - Fallback with Pin
+
+![GIF2](https://github.com/kychok98/rn-transfer-biometrics/blob/develop/demo/demo_success-pin.gif)
+
+3. Failed - Insufficient Fund Error
+
+![GIF3](https://github.com/kychok98/rn-transfer-biometrics/blob/develop/demo/demo_fail-insufficient.gif)
+
+4. Failed - Network Error 
+
+![GIF4](https://github.com/kychok98/rn-transfer-biometrics/blob/develop/demo/demo_fail-network.gif)
