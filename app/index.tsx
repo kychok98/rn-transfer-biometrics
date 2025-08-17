@@ -15,7 +15,7 @@ export default function Home() {
         </Text>
       </View>
 
-      <Link href="/transfer" asChild>
+      <Link href="/transfer/recipient" asChild>
         <Text
           className="bg-black text-white text-center py-4 rounded-xl text-base"
           accessibilityRole="button"

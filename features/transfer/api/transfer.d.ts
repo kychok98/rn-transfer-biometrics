@@ -6,7 +6,7 @@ type Recipient = {
 
 type TransferResult = {
   id: string;
-  recipientId: string;
+  recipientAccount: string;
   recipientName: string;
   amount: number;
   note?: string;
@@ -14,7 +14,7 @@ type TransferResult = {
 };
 
 interface InputTransfer {
-  recipientId: string;
+  recipientAccount: string;
   recipientName: string;
   amount: number;
   note?: string;

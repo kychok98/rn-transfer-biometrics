@@ -9,8 +9,11 @@ export default function InputAmount({ value, onChange }: IProps) {
   return (
     <View className="gap-2">
       <View className="flex flex-row items-start">
-        <Text className="leading-[34px] text-4xl font-bold">RM</Text>
+        <Text className="leading-[34px] text-4xl text-gray-300 font-bold">
+          RM
+        </Text>
         <TextInput
+          autoFocus
           value={value}
           onChangeText={onChange}
           keyboardType="decimal-pad"

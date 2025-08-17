@@ -13,8 +13,8 @@ export default function TransferForm({ form }: Props) {
   const { balance } = useAccountStore();
 
   return (
-    <View className="p-4 gap-3 border-t border-gray-100">
-      <Text className="text-gray-500 font-semibold">
+    <View className="py-4 gap-3">
+      <Text className="text-gray-600 font-semibold">
         Balance: {formatCurrency(balance)}
       </Text>
 

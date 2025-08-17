@@ -1,5 +1,5 @@
+import { useRouter } from "expo-router";
 import { useMemo, useState } from "react";
-import { type UseFormReturn } from "react-hook-form";
 import {
   ActivityIndicator,
   FlatList,
@@ -9,12 +9,10 @@ import {
 } from "react-native";
 import RecipientItem from "./components/RecipientItem";
 import { useRecipients } from "./hooks/useRecipients";
-import { TransferFormValues } from "./schemas/transfer";
 
-interface Props {
-  form: UseFormReturn<TransferFormValues>;
-}
-export default function TransferRecipients({ form }: Props) {
+export default function TransferRecipients() {
+  const router = useRouter();
+
   const { data: recipients = [], isLoading, isError } = useRecipients();
 
   const [search, setSearch] = useState("");
@@ -49,7 +47,6 @@ export default function TransferRecipients({ form }: Props) {
   return (
     <View className="flex-1 bg-white">
       <View className="p-4 gap-3">
-        <Text className="mt-4 text-base font-medium">Recipient</Text>
         <TextInput
           value={search}
           onChangeText={setSearch}
@@ -66,11 +63,15 @@ export default function TransferRecipients({ form }: Props) {
         renderItem={({ item }) => (
           <RecipientItem
             item={item}
-            selected={item.id === form.watch("recipientId")}
-            onPress={() => {
-              form.setValue("recipientId", item.id, { shouldValidate: true });
-              form.setValue("recipientName", item.name);
-            }}
+            onPress={() =>
+              router.push({
+                pathname: "/transfer/amount",
+                params: {
+                  recipientAccount: item.account,
+                  recipientName: item.name,
+                },
+              })
+            }
           />
         )}
         ListEmptyComponent={

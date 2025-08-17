@@ -22,7 +22,7 @@ export async function processTransfer(
 
   const result: TransferResult = {
     id: "tx_" + Math.random().toString(36).slice(2, 10),
-    recipientId: input.recipientId,
+    recipientAccount: input.recipientAccount,
     recipientName: input.recipientName,
     amount: input.amount,
     note: input.note,

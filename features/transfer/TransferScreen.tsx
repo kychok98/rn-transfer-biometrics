@@ -1,4 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useLocalSearchParams } from "expo-router";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { ActivityIndicator, Pressable, Text, View } from "react-native";
@@ -8,9 +9,13 @@ import ModalPin from "./components/ModalPin";
 import { useTransaction } from "./hooks/useTransaction";
 import { transferFormSchema, TransferFormValues } from "./schemas/transfer";
 import TransferForm from "./TransferForm";
-import TransferRecipients from "./TransferRecipients";
 
 export default function TransferScreen() {
+  const { recipientName, recipientAccount } = useLocalSearchParams<{
+    recipientName: string;
+    recipientAccount: string;
+  }>();
+
   const [pinVisible, setPinVisible] = useState(false);
   const [pinResolver, setPinResolver] = useState<
     ((pin: string | null) => void) | null
@@ -19,7 +24,7 @@ export default function TransferScreen() {
   const form = useForm<TransferFormValues>({
     resolver: zodResolver(transferFormSchema),
     mode: "onChange",
-    defaultValues: { recipientId: "", amountStr: "", note: "" },
+    defaultValues: { amountStr: "", note: "" },
   });
 
   const transaction = useTransaction({
@@ -31,8 +36,8 @@ export default function TransferScreen() {
 
   const handleSubmit = form.handleSubmit((values) => {
     transaction.mutate({
-      recipientId: values.recipientId,
-      recipientName: values.recipientName!,
+      recipientAccount: recipientAccount,
+      recipientName: recipientName,
       amount: Number(values.amountStr),
       note: values.note,
     });
@@ -40,9 +45,13 @@ export default function TransferScreen() {
 
   return (
     <SafeKeyboardView keyboardOffset={80}>
-      <View className="flex-1 bg-white">
+      <View className="flex-1 bg-white p-6">
+        <View className="gap-1 mb-2">
+          <Text className="font-medium text-xl">{recipientName}</Text>
+          <Text className="text-gray-500 text-2xl">{recipientAccount}</Text>
+        </View>
+
         <TransferForm form={form} />
-        <TransferRecipients form={form} />
 
         <Pressable
           disabled={!form.formState.isValid || transaction.isPending}
