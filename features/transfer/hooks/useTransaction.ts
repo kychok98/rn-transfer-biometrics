@@ -4,6 +4,7 @@ import { Alert } from "react-native";
 import { processTransfer } from "../api/transfer-api";
 import { authenticateWithBiometrics } from "../../../lib/biometrics";
 import { useAccountStore } from "../../../store/useAccount";
+import { API_ERROR, CLIENT_ERROR } from "../constants/errors";
 
 interface UseTransactionParams {
   requestPin: (resolver: (pin: string | null) => void) => void;
@@ -24,7 +25,7 @@ export const useTransaction = ({ requestPin }: UseTransactionParams) => {
           }),
       });
       if (!authed) {
-        throw new Error("AUTH_CANCELLED");
+        throw new Error(CLIENT_ERROR.AUTH_CANCELLED);
       }
 
       // Step 2: process transfer via simulated API
@@ -46,23 +47,22 @@ export const useTransaction = ({ requestPin }: UseTransactionParams) => {
       });
     },
     onError: (err: any) => {
-      console.log("error", err);
+      console.error(err);
       const code = err?.code || err?.message;
-      console.log(code);
       switch (code) {
-        case "INSUFFICIENT_FUNDS":
+        case API_ERROR.INSUFFICIENT_FUNDS:
           Alert.alert(
             "Insufficient funds",
             "Your balance is not enough for this transfer.",
           );
           break;
-        case "NETWORK_ERROR":
+        case API_ERROR.NETWORK_ERROR:
           Alert.alert(
             "Network issue",
             "Please check your connection and try again.",
           );
           break;
-        case "AUTH_CANCELLED":
+        case CLIENT_ERROR.AUTH_CANCELLED:
           Alert.alert("Authentication cancelled", "Transfer not authorized.");
           break;
         default:
