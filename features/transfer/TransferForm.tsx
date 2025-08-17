@@ -2,13 +2,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { UseMutateFunction } from "@tanstack/react-query";
 import { useLocalSearchParams } from "expo-router";
 import { Controller, useForm } from "react-hook-form";
-import {
-  ActivityIndicator,
-  Pressable,
-  Text,
-  TextInput,
-  View,
-} from "react-native";
+import { Text, TextInput, View } from "react-native";
+import Button from "../../components/button/Button";
 import InputAmount from "../../components/input/InputAmount";
 import { formatCurrency } from "../../utils/format";
 import { transferFormSchema, TransferFormValues } from "./schemas/transfer";
@@ -88,22 +83,17 @@ export default function TransferForm({ mutate, isLoading }: IProps) {
         />
       </View>
 
-      <Pressable
-        disabled={!form.formState.isValid || isLoading}
+      <Button
+        title={
+          form.watch("amountStr")
+            ? `Send · ${formatCurrency(Number(form.getValues("amountStr")) || 0)}`
+            : "Send"
+        }
+        isLoading={isLoading}
+        disabled={!form.formState.isValid}
         onPress={handleSubmit}
-        className="bg-black rounded-xl py-4 mt-2 opacity-100 disabled:opacity-50 mb-8"
-      >
-        {isLoading ? (
-          <ActivityIndicator color="#fff" />
-        ) : (
-          <Text className="text-white text-center text-base font-medium">
-            Send
-            {form.watch("amountStr")
-              ? ` · ${formatCurrency(Number(form.getValues("amountStr")) || 0)}`
-              : ""}
-          </Text>
-        )}
-      </Pressable>
+        className="py-4"
+      />
     </View>
   );
 }
