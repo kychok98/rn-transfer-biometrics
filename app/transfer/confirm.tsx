@@ -1,5 +1,5 @@
-import { useLocalSearchParams, Link } from "expo-router";
-import { View, Text } from "react-native";
+import { Link, useLocalSearchParams } from "expo-router";
+import { Text, View } from "react-native";
 import { formatCurrency } from "../../utils/format";
 
 export default function Confirm() {
@@ -31,7 +31,7 @@ export default function Confirm() {
         </>
       ) : null}
 
-      <Link href="/" asChild>
+      <Link href="/" dismissTo asChild>
         <Text
           className="bg-black text-white text-center py-4 rounded-xl text-base mt-6"
           accessibilityRole="button"

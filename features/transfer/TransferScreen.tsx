@@ -52,9 +52,9 @@ export default function TransferScreen() {
             <ActivityIndicator color="#fff" />
           ) : (
             <Text className="text-white text-center text-base font-medium">
-              Send{" "}
-              {form.getValues("amountStr")
-                ? `· ${formatCurrency(Number(form.getValues("amountStr")) || 0)}`
+              Send
+              {form.watch("amountStr")
+                ? ` · ${formatCurrency(Number(form.getValues("amountStr")) || 0)}`
                 : ""}
             </Text>
           )}

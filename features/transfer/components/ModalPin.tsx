@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Modal, View, Text, TextInput, Pressable } from "react-native";
 
 export default function ModalPin({
@@ -11,6 +11,12 @@ export default function ModalPin({
   onCancel: () => void;
 }) {
   const [pin, setPin] = useState("");
+
+  useEffect(() => {
+    if (visible) return;
+
+    setPin("");
+  }, [visible]);
 
   return (
     <Modal
@@ -41,8 +47,9 @@ export default function ModalPin({
               <Text className="text-center">Cancel</Text>
             </Pressable>
             <Pressable
+              disabled={!pin}
               onPress={() => onSubmit(pin)}
-              className="flex-1 bg-black rounded-xl py-3"
+              className="flex-1 bg-black rounded-xl py-3 disabled:opacity-50"
             >
               <Text className="text-white text-center">Confirm</Text>
             </Pressable>

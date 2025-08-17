@@ -16,15 +16,15 @@ export async function processTransfer(input: {
     throw err;
   }
 
-  // Simulate network latency & random failures
+  // Simulate network latency
   await wait(600 + Math.random() * 900);
-  const roll = Math.random();
-  if (roll < 0.08) {
+
+  if (input.amount === 404) {
     const e: any = new Error("NETWORK_ERROR");
     e.code = "NETWORK_ERROR";
     throw e;
   }
-  if (roll < 0.1) {
+  if (input.amount === 500) {
     const e: any = new Error("SERVER_ERROR");
     e.code = "SERVER_ERROR";
     throw e;

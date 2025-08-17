@@ -32,7 +32,7 @@ export default function RootLayout() {
               name="transfer/confirm"
               options={{
                 title: "Transfer Complete",
-                headerBackButtonDisplayMode: "minimal",
+                headerBackVisible: false,
               }}
             />
           </Stack>
