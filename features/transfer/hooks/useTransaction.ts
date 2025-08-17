@@ -47,7 +47,6 @@ export const useTransaction = ({ requestPin }: UseTransactionParams) => {
       });
     },
     onError: (err: any) => {
-      console.error(err);
       const code = err?.code || err?.message;
       switch (code) {
         case API_ERROR.INSUFFICIENT_FUNDS:
