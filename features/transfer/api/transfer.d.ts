@@ -12,3 +12,10 @@ type TransferResult = {
   note?: string;
   createdAt: string;
 };
+
+interface InputTransfer {
+  recipientId: string;
+  recipientName: string;
+  amount: number;
+  note?: string;
+}

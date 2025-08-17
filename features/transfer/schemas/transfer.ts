@@ -2,6 +2,7 @@ import { z } from "zod";
 
 export const transferFormSchema = z.object({
   recipientId: z.string().min(1, "Please select a recipient"),
+  recipientName: z.string().optional(),
   amountStr: z
     .string()
     .min(1, "Enter amount")

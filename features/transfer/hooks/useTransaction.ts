@@ -14,12 +14,7 @@ export const useTransaction = ({ requestPin }: UseTransactionParams) => {
   const { debit, addTransaction } = useAccountStore();
 
   return useMutation({
-    mutationFn: async (input: {
-      recipientId: string;
-      amount: number;
-      note?: string;
-    }) => {
-      console.log("mutate");
+    mutationFn: async (input: InputTransfer) => {
       // Step 1: biometrics (with PIN fallback handled inside helper)
       const authed = await authenticateWithBiometrics({
         promptMessage: "Authenticate to transfer",

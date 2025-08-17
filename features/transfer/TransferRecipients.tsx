@@ -1,15 +1,22 @@
 import { useMemo, useState } from "react";
 import { type UseFormReturn } from "react-hook-form";
-import { FlatList, Text, TextInput, View } from "react-native";
-import { useAccountStore } from "../../store/useAccount";
+import {
+  ActivityIndicator,
+  FlatList,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
 import RecipientItem from "./components/RecipientItem";
+import { useRecipients } from "./hooks/useRecipients";
 import { TransferFormValues } from "./schemas/transfer";
 
 interface Props {
   form: UseFormReturn<TransferFormValues>;
 }
 export default function TransferRecipients({ form }: Props) {
-  const { recipients } = useAccountStore();
+  const { data: recipients = [], isLoading, isError } = useRecipients();
+
   const [search, setSearch] = useState("");
 
   const filteredRecipients = useMemo(() => {
@@ -21,6 +28,23 @@ export default function TransferRecipients({ form }: Props) {
         r.name.toLowerCase().includes(q) || r.account.toLowerCase().includes(q),
     );
   }, [recipients, search]);
+
+  if (isLoading) {
+    return (
+      <View className="flex-1 items-center justify-center">
+        <ActivityIndicator size="large" />
+        <Text className="mt-2 text-gray-500">Loading recipients...</Text>
+      </View>
+    );
+  }
+
+  if (isError) {
+    return (
+      <View className="flex-1 items-center justify-center">
+        <Text className="text-red-500">Failed to load recipients.</Text>
+      </View>
+    );
+  }
 
   return (
     <View className="flex-1 bg-white">
@@ -43,11 +67,15 @@ export default function TransferRecipients({ form }: Props) {
           <RecipientItem
             item={item}
             selected={item.id === form.watch("recipientId")}
-            onPress={() =>
-              form.setValue("recipientId", item.id, { shouldValidate: true })
-            }
+            onPress={() => {
+              form.setValue("recipientId", item.id, { shouldValidate: true });
+              form.setValue("recipientName", item.name);
+            }}
           />
         )}
+        ListEmptyComponent={
+          <Text className="px-4 text-gray-500">No recipients found.</Text>
+        }
         initialNumToRender={12}
         windowSize={8}
         removeClippedSubviews
@@ -56,9 +84,6 @@ export default function TransferRecipients({ form }: Props) {
           offset: 64 * index,
           index,
         })}
-        ListEmptyComponent={
-          <Text className="px-4 text-gray-500">No recipients.</Text>
-        }
       />
     </View>
   );

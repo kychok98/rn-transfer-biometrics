@@ -32,6 +32,7 @@ export default function TransferScreen() {
   const handleSubmit = form.handleSubmit((values) => {
     transaction.mutate({
       recipientId: values.recipientId,
+      recipientName: values.recipientName!,
       amount: Number(values.amountStr),
       note: values.note,
     });
