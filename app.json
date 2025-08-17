@@ -2,8 +2,8 @@
   "expo": {
     "scheme": "payment",
     "userInterfaceStyle": "automatic",
-    "name": "rn-transfer-biometrics",
-    "slug": "rn-transfer-biometrics",
+    "name": "Payment Module",
+    "slug": "payment-transfer-module",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -18,7 +18,7 @@
       "infoPlist": {
         "NSFaceIDUsageDescription": "We use Face ID to securely authenticate your payment transfers."
       },
-      "bundleIdentifier": "com.anonymous.rn-transfer-biometrics"
+      "bundleIdentifier": "com.anonymous.payment-transfer-module"
     },
     "android": {
       "adaptiveIcon": {
@@ -26,7 +26,7 @@
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
-      "package": "com.anonymous.rntransferbiometrics"
+      "package": "com.anonymous.paymenttransfermodule"
     },
     "web": {
       "favicon": "./assets/favicon.png"

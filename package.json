@@ -9,7 +9,7 @@
     "ios": "expo run:ios",
     "ios:rebuild": "cd ios && pod install && cd ..",
     "web": "expo start --web",
-    "expo:fit": "expo install --fix",
+    "install:fix": "expo install --fix",
     "lint": "expo lint",
     "lint:fix": "prettier --write ."
   },
@@ -27,8 +27,8 @@
     "react-hook-form": "^7.62.0",
     "react-native": "0.79.5",
     "react-native-gesture-handler": "~2.24.0",
-    "react-native-safe-area-context": "^5.6.0",
-    "react-native-screens": "^4.14.1",
+    "react-native-safe-area-context": "5.4.0",
+    "react-native-screens": "~4.11.1",
     "react-native-web": "^0.20.0",
     "zod": "^4.0.17",
     "zustand": "^5.0.7"
