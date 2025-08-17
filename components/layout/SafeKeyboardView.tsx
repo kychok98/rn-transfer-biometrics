@@ -8,17 +8,17 @@ import {
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-type Props = {
+interface IProps {
   children: ReactNode;
   style?: ViewStyle;
   keyboardOffset?: number;
-};
+}
 
 export default function SafeKeyboardView({
   children,
   style,
   keyboardOffset = 0,
-}: Props) {
+}: IProps) {
   const insets = useSafeAreaInsets();
 
   return (

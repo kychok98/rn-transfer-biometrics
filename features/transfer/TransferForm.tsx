@@ -1,7 +1,7 @@
 import { Controller, UseFormReturn } from "react-hook-form";
 import { Text, TextInput, View } from "react-native";
 import InputAmount from "../../components/input/InputAmount";
-import { useAccountStore } from "../../store/useAccount";
+import { useAccountStore } from "./stores/useAccount";
 import { formatCurrency } from "../../utils/format";
 import { TransferFormValues } from "./schemas/transfer";
 

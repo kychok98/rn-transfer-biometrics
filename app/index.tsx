@@ -1,6 +1,6 @@
 import { Link } from "expo-router";
 import { View, Text } from "react-native";
-import { useAccountStore } from "../store/useAccount";
+import { useAccountStore } from "../features/transfer/stores/useAccount";
 import { formatCurrency } from "../utils/format";
 
 export default function Home() {

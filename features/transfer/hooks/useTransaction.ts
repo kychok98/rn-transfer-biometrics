@@ -3,7 +3,7 @@ import { useRouter } from "expo-router";
 import { Alert } from "react-native";
 import { processTransfer } from "../api/transfer-api";
 import { authenticateWithBiometrics } from "../../../lib/biometrics";
-import { useAccountStore } from "../../../store/useAccount";
+import { useAccountStore } from "../stores/useAccount";
 import { API_ERROR, CLIENT_ERROR } from "../constants/errors";
 
 interface UseTransactionParams {
@@ -12,7 +12,7 @@ interface UseTransactionParams {
 
 export const useTransaction = ({ requestPin }: UseTransactionParams) => {
   const router = useRouter();
-  const { debit, addTransaction } = useAccountStore();
+  const { debit } = useAccountStore();
 
   return useMutation({
     mutationFn: async (input: InputTransfer) => {
@@ -35,7 +35,6 @@ export const useTransaction = ({ requestPin }: UseTransactionParams) => {
     onSuccess: (res) => {
       // update local store
       debit(res.amount);
-      addTransaction(res);
       router.replace({
         pathname: "/transfer/confirm",
         params: {
